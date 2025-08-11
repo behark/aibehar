@@ -37,6 +37,18 @@ body:
       options:
         - label: I have searched the existing issues and discussions.
           required: true
+
+  - type: checkboxes
+    id: security-considerations
+    attributes:
+      label: Security Considerations
+      description: Please consider security aspects of your feature request
+      options:
+        - label: I have considered security implications of this feature request.
+          required: true
+        - label: This feature might involve sensitive data or authentication mechanisms.
+        - label: This feature might require additional access controls or permissions.
+  
   - type: textarea
     id: problem-description
     attributes:

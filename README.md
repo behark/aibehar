@@ -268,3 +268,15 @@ If you have any questions, suggestions, or need assistance, please open an issue
 ---
 
 Created by [Timothy Jaeryang Baek](https://github.com/tjbck) - Let's make Open WebUI even more amazing together! 💪
+
+## Documentation 📚
+
+### For Users
+- [User Guide](docs/USER_GUIDE.md) - Complete guide to using Open WebUI features
+- [Troubleshooting](TROUBLESHOOTING.md) - Solutions for common issues
+
+### For Administrators & Developers
+- [Comprehensive Installation Guide](docs/INSTALLATION_GUIDE.md) - Detailed setup instructions for all deployment methods
+- [Security Guide](docs/SECURITY_GUIDE.md) - Security best practices and configuration
+- [Secrets Management](docs/SECRETS_MANAGEMENT.md) - How to properly manage sensitive information
+- [API Documentation](docs/API.md) - API reference for developers

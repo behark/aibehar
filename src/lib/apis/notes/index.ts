@@ -1,5 +1,5 @@
 import { WEBUI_API_BASE_URL } from '$lib/constants';
-import { getTimeRange } from '$lib/utils';
+import { getTimeRange } from '$lib/utils/time-range';
 
 type NoteItem = {
 	title: string;
@@ -78,7 +78,7 @@ export const getNotes = async (token: string = '', raw: boolean = false) => {
 	// Build the grouped object
 	const grouped: Record<string, any[]> = {};
 	for (const note of res) {
-		const timeRange = getTimeRange(note.updated_at / 1000000000);
+		const timeRange = getTimeRange(note.updated_at);
 		if (!grouped[timeRange]) {
 			grouped[timeRange] = [];
 		}

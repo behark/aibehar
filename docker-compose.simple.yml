@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Open WebUI - Using Official Pre-built Image
+  open-webui:
+    image: check.io/open-webui/open-webui:main
+    container_name: open-webui
+    volumes:
+      - open-webui:/app/backend/data
+    ports:
+      - ${OPEN_WEBUI_PORT:-8080}:8080
+    environment:
+      - 'OLLAMA_BASE_URL=http://ollama:11434'
+      - 'WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:-behar-ai-platform-super-secure-secret-key-2025-production}'
+      - 'CORS_ALLOW_ORIGIN=*'
+      - 'DATA_DIR=/app/backend/data'
+      - 'ENABLE_SIGNUP=true'
+      - 'ENABLE_LOGIN_FORM=true'
+      - 'ENABLE_WEB_SEARCH=true'
+      - 'DATABASE_URL=${DATABASE_URL:-}'
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+    depends_on:
+      - ollama
+
+  # Ollama for AI Models
+  ollama:
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+
+volumes:
+  ollama: {}
+  open-webui: {}
