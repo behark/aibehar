@@ -7,25 +7,21 @@ WORKDIR /app
 # Install curl for healthchecks (base image may not include it)
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
-USER 1000
 
-# Copy only necessary configuration files (no personal data)
+# Optionally copy Railway config (not required at runtime, but harmless)
 COPY railway.toml ./
-COPY railway-deploy.sh ./
-COPY DEPLOYMENT_GUIDE.md ./
 
 # Create data directory
 RUN mkdir -p /app/backend/data
 
-# Set permissions
-RUN chmod +x railway-deploy.sh
+# Drop privileges to app user
+USER 1000
 
 # Expose port
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -fsS http://localhost:8080/ || exit 1
+# Health check (prefer /health, fallback to /) and use dynamic PORT
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=5 \
+  CMD sh -c 'curl -fsS http://localhost:${PORT:-8080}/health || curl -fsS http://localhost:${PORT:-8080}/ || exit 1'
 
-# Start the application via Railway script (uses uvicorn open_webui.main)
-CMD ["/bin/bash", "-lc", "./railway-deploy.sh"]
+# Use the base image's default entrypoint/CMD to start the app
