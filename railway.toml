@@ -1,0 +1,16 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile.deploy"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+
+[variables]
+WEBUI_SECRET_KEY = { generate = true }
+CORS_ALLOW_ORIGIN = "*"
+DATA_DIR = "/app/backend/data"
+PORT = "8080"
+# Map the managed Postgres connection string provided by Railway
+DATABASE_URL = "${{ Postgres.DATABASE_URL }}"

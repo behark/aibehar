@@ -1,0 +1,132 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Node.js
+node_modules/
+.next/
+dist/
+build/
+*.node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn
+package-lock.json
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+ai_agent_env/
+changelog_env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Model files
+*.h5
+*.pkl
+*.joblib
+
+# Logs
+logs/
+*.log
+
+# Cache
+.mypy_cache/
+.pytest_cache/
+.coverage
+
+# Temporary files
+*.tmp
+*.temp
+
+# Data files
+data/
+model_repository/
+vector_stores/
+semantic_search_data/
+knowledge_base/
+enhanced_knowledge_db/
+trading_knowledge_db/
+
+# Backups and exports
+backups/
+exports/
+system_exports/
+migration_backups/
+handoff_packages/
+
+# Build artifacts
+anomaly_demo_output/
+curiosity_demo_output/
+
+# System files
+windsurf-linux-x64.deb
+windsurf-linux.tar.gz
+windsurf.deb
+
+# Plugin storage
+plugin_storage/
+plugins/
+
+# Templates and cloneable architectures
+cloneable_templates/
+templates/
+
+# Performance optimizations
+performance_optimizations/
+
+# System docs
+system_docs/
+.vercel
+# Next.js SWC binaries
+nextjs-app/node_modules/@next/swc-*/
+ai-platform-modern/frontend/node_modules/@next/swc-*/
+**/@next/swc-*/

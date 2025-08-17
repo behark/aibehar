@@ -1,0 +1,31 @@
+# Use the official Open WebUI image as base
+FROM ghcr.io/open-webui/open-webui:main
+
+# Set working directory
+WORKDIR /app
+
+# Install curl for healthchecks (base image may not include it)
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates && rm -rf /var/lib/apt/lists/*
+USER 1000
+
+# Copy only necessary configuration files (no personal data)
+COPY railway.toml ./
+COPY railway-deploy.sh ./
+COPY DEPLOYMENT_GUIDE.md ./
+
+# Create data directory
+RUN mkdir -p /app/backend/data
+
+# Set permissions
+RUN chmod +x railway-deploy.sh
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -fsS http://localhost:8080/ || exit 1
+
+# Start the application via Railway script (uses uvicorn open_webui.main)
+CMD ["/bin/bash", "-lc", "./railway-deploy.sh"]
