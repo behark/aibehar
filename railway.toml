@@ -3,9 +3,10 @@ builder = "dockerfile"
 dockerfilePath = "Dockerfile.deploy"
 
 [deploy]
-healthcheckPath = "/"
+healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
+startCommand = "bash -c 'python -m uvicorn open_webui.main:app --host 0.0.0.0 --port ${PORT:-8080}'"
 
 [variables]
 WEBUI_SECRET_KEY = { generate = true }
